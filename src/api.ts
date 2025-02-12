@@ -20,18 +20,18 @@ export const addTodo = async (todo: Task): Promise<Task> => {
   return newTodo;
 };
 
-export const updateTodo = async (
+export const editTodo = async (
   id: string,
   newText: string
 ): Promise<Task> => {
-  const res = await fetch(`http://localhost:3001/tasks${id}`, {
+  const res = await fetch(`http://localhost:3001/tasks/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ text: newText }),
   });
-  const updatedTodo = await res.json();
+  const updatedTodo = res.json();
   return updatedTodo;
 };
 
@@ -42,6 +42,6 @@ export const deleteTodo = async (id: string): Promise<Task> => {
       "Content-Type": "application/json",
     },
   });
-  const deleteTodo = await res.json();
+  const deleteTodo = res.json();
   return deleteTodo;
 };
